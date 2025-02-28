@@ -1,0 +1,36 @@
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.__grades = []  # Private list to store grades
+
+    # Method to add a grade (encapsulated)
+    def add_grade(self, grade):
+        if 0 <= grade <= 100:
+            self.__grades.append(grade)
+            print(f"Grade {grade} added for {self.name}.")
+        else:
+            print("Invalid grade. It must be between 0 and 100.")
+
+    # Method to get the average grade (read-only access)
+    def get_average_grade(self):
+        if len(self.__grades) == 0:
+            return 0
+        return sum(self.__grades) / len(self.__grades)
+
+    # Method to get all grades (read-only access)
+    def get_grades(self):
+        return self.__grades
+
+# Example usage
+student1 = Student("John Doe")
+
+# Adding grades
+student1.add_grade(90)
+student1.add_grade(85)
+student1.add_grade(110)  # Invalid grade
+
+# Getting average grade
+print(f"Average grade for {student1.name}: {student1.get_average_grade()}")
+
+# Accessing all grades
+print(f"All grades for {student1.name}: {student1.get_grades()}")
