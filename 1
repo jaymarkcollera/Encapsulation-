@@ -1,0 +1,42 @@
+class Temperature:
+    def __init__(self, celsius=0):
+        # Private variable for temperature in Celsius
+        self.__celsius = celsius
+
+    # Getter for Celsius (Direct Access)
+    def get_celsius(self):
+        return self.__celsius
+    
+    # Setter for Celsius (Only allows setting realistic values)
+    def set_celsius(self, value):
+        if value < -273.15:  # Absolute zero in Celsius
+            print("Error: Temperature cannot be below absolute zero.")
+        else:
+            self.__celsius = value
+
+    # Getter for Fahrenheit (calculated from Celsius)
+    def get_fahrenheit(self):
+        return (self.__celsius * 9/5) + 32
+
+    # Setter for Fahrenheit (converts and then sets Celsius)
+    def set_fahrenheit(self, value):
+        if value < -459.67:  # Absolute zero in Fahrenheit
+            print("Error: Temperature cannot be below absolute zero.")
+        else:
+            self.__celsius = (value - 32) * 5/9
+
+# Usage Example
+temp = Temperature()
+
+# Setting temperature in Celsius
+temp.set_celsius(25)
+print(f"Temperature in Celsius: {temp.get_celsius()}")  # Expected 25
+print(f"Temperature in Fahrenheit: {temp.get_fahrenheit()}")  # Expected 77.0
+
+# Setting temperature in Fahrenheit
+temp.set_fahrenheit(100)
+print(f"Temperature in Celsius: {temp.get_celsius()}")  # Expected 37.777...
+print(f"Temperature in Fahrenheit: {temp.get_fahrenheit()}")  # Expected 100
+
+# Trying to set an invalid temperature below absolute zero
+temp.set_celsius(-300)  # This will trigger an error message
