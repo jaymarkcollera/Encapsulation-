@@ -1,0 +1,36 @@
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+        self.__is_checked_out = False  # private variable to track book checkout status
+
+    # Getter for checking if the book is checked out
+    def is_checked_out(self):
+        return self.__is_checked_out
+
+    # Setter for checking out the book
+    def check_out(self):
+        if self.__is_checked_out:
+            print(f"'{self.title}' is already checked out.")
+        else:
+            self.__is_checked_out = True
+            print(f"'{self.title}' has been checked out.")
+
+    # Setter for returning the book
+    def return_book(self):
+        if not self.__is_checked_out:
+            print(f"'{self.title}' was not checked out.")
+        else:
+            self.__is_checked_out = False
+            print(f"'{self.title}' has been returned.")
+
+# Example usage
+book1 = Book("The Great Gatsby", "F. Scott Fitzgerald")
+book2 = Book("1984", "George Orwell")
+
+# Check out and return books
+book1.check_out()
+book2.check_out()
+book1.return_book()
+book1.check_out()
+book2.check_out()
